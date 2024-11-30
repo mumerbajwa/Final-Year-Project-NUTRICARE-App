@@ -45,3 +45,21 @@ Provides instant identification of malnutrition risks to enable timely intervent
 - **APIs:** AI-based image analysis and healthcare APIs.  
 
 ---
+
+## 🙏 Acknowledgments  
+We would like to express our heartfelt gratitude to:  
+
+- **Advisors:** Dr. Iqra Muhammad  
+- **Team Members:** Muhammad Ahmad, Muhammad Umer, Muhammad Abdullah  
+- **Special Thanks:**  
+  - FAST National University of Computer and Emerging Science, Pakistan
+---
+
+## 📞 Contact  
+For any queries or feedback, please feel free to reach out:  
+
+- **Email:** mahmad92001@gmail.com  
+- **GitHub:** https://github.com/Muhammad-Ahmad092  
+- **LinkedIn:** https://www.linkedin.com/in/muhammad-ahmad-768a62262/ 
+
+We’d love to hear from you!
