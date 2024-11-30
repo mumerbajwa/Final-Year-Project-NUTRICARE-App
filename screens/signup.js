@@ -1,40 +1,70 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'; // Install with `npm install react-native-vector-icons`
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
   const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
 
-  const validateEmail = () => {
+  // Password condition states
+  const [passwordErrors, setPasswordErrors] = useState([]);
+
+  const validateEmail = (value) => {
+    setEmail(value);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      Alert.alert('Invalid Email', 'Please enter a valid email address.');
-      return false;
-    }
-    return true;
+    setEmailError(emailRegex.test(value) ? '' : 'Invalid email address');
   };
 
-  const validatePassword = () => {
-    if (password.length < 6) {
-      Alert.alert('Weak Password', 'Password must be at least 6 characters long.');
-      return false;
-    }
-    if (password !== confirmPassword) {
-      Alert.alert('Password Mismatch', 'Passwords do not match. Please try again.');
-      return false;
-    }
-    return true;
+  const validatePassword = (value) => {
+    setPassword(value);
+    const errors = [];
+    if (value.length < 8) errors.push('At least 8 characters');
+    if (!/[A-Z]/.test(value)) errors.push('One uppercase letter');
+    if (!/[a-z]/.test(value)) errors.push('One lowercase letter');
+    if (!/\d/.test(value)) errors.push('One number');
+    if (!/[@$!%*?&]/.test(value)) errors.push('One special character (@$!%*?&)');
+    setPasswordErrors(errors);
   };
 
   const handleSignUp = () => {
-    if (validateEmail() && validatePassword()) {
-      Alert.alert('Sign Up Success', `Welcome, ${email}`);
-      // Perform sign-up logic here
+    // Check if any field is empty
+    if (!email || !password || !confirmPassword) {
+      Alert.alert('Error', 'Please fill all the fields.');
+      return;
     }
+
+    // Check if email is valid
+    if (emailError) {
+      Alert.alert('Error', 'Please enter a valid email address.');
+      return;
+    }
+
+    // Check if password meets all conditions
+    if (passwordErrors.length > 0) {
+      Alert.alert('Error', 'Please ensure your password meets all conditions.');
+      return;
+    }
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match.');
+      return;
+    }
+
+    // If all validations pass, proceed to navigate
+    console.log('Sign Up Successful', email);
+    navigation.navigate('Otpverification'); // Example navigation
   };
 
   return (
@@ -42,22 +72,25 @@ const SignUpScreen = ({ navigation }) => {
       <Text style={styles.welcomeText}>Welcome!</Text>
       <Text style={styles.signupText}>Sign Up</Text>
 
+      {/* Email Input */}
       <TextInput
         style={styles.input}
         placeholder="Email"
         value={email}
-        onChangeText={setEmail}
+        onChangeText={validateEmail}
         keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
       />
+      {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
 
+      {/* Password Input */}
       <View style={styles.passwordContainer}>
         <TextInput
           style={styles.passwordInput}
           placeholder="Password"
           value={password}
-          onChangeText={setPassword}
+          onChangeText={validatePassword}
           secureTextEntry={hidePassword}
         />
         <TouchableOpacity
@@ -71,7 +104,11 @@ const SignUpScreen = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
+      {passwordErrors.length > 0 && (
+        <Text style={styles.errorText}>- {passwordErrors[0]}</Text>
+      )}
 
+      {/* Confirm Password Input */}
       <View style={styles.passwordContainer}>
         <TextInput
           style={styles.passwordInput}
@@ -92,6 +129,12 @@ const SignUpScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
+      {/* Error under Confirm Password */}
+      {passwordErrors.includes('Passwords do not match') && (
+        <Text style={styles.errorText}>Passwords do not match</Text>
+      )}
+
+      {/* Sign Up Button */}
       <TouchableOpacity style={styles.signupButton} onPress={handleSignUp}>
         <Text style={styles.signupButtonText}>Sign Up</Text>
       </TouchableOpacity>
@@ -127,8 +170,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 16,
-    marginBottom: 10,
+    marginBottom: 5,
     backgroundColor: '#fff',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 14,
+    alignSelf: 'flex-start',
+    marginLeft: 10,
+    marginBottom: 10,
   },
   passwordContainer: {
     width: '100%',
@@ -138,7 +188,7 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     borderRadius: 16,
     backgroundColor: '#fff',
-    marginBottom: 10,
+    marginBottom: 5,
   },
   passwordInput: {
     flex: 1,

@@ -38,6 +38,7 @@ const LoginScreen = ({ navigation }) => {
         autoCorrect={false}
       />
 
+      {/* Password Input Section */}
       <View style={styles.passwordContainer}>
         <TextInput
           style={styles.passwordInput}
@@ -55,6 +56,13 @@ const LoginScreen = ({ navigation }) => {
             size={20}
             color="#333"
           />
+        </TouchableOpacity>
+      </View>
+
+      {/* Forget Password Button */}
+      <View style={styles.forgetPasswordContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate('ForgetPassword')}>
+          <Text style={styles.forgetPasswordText}>Forget Password?</Text>
         </TouchableOpacity>
       </View>
 
@@ -111,7 +119,7 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     borderRadius: 16,
     backgroundColor: '#fff',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   passwordInput: {
     flex: 1,
@@ -119,6 +127,16 @@ const styles = StyleSheet.create({
   },
   eyeButton: {
     paddingHorizontal: 10,
+  },
+  forgetPasswordContainer: {
+    alignSelf: 'flex-end',
+    marginRight: 10,
+    marginBottom: 10,
+  },
+  forgetPasswordText: {
+    color: '#29AB87',
+    fontSize: 14,
+    textDecorationLine: 'underline',
   },
   loginButton: {
     backgroundColor: '#29AB87',
