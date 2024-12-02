@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Text } from 'react-native';
 
 const OpeningPage = ({ navigation }) => {
   useEffect(() => {
@@ -11,12 +11,18 @@ const OpeningPage = ({ navigation }) => {
     // Cleanup timer on unmount
     return () => clearTimeout(timer);
   }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Image
         source={require('../assets/openingpage_img.png')} // Update the path to your logo file
         style={styles.logo}
       />
+      {/* Footer Text */}
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>Developed by</Text>
+        <Text style={styles.footerNames}>m.ahmad, m.umer, m.abdullah</Text>
+      </View>
     </View>
   );
 };
@@ -32,6 +38,23 @@ const styles = StyleSheet.create({
     width: 220, // Adjust width based on your logo size
     height: 220, // Adjust height based on your logo size
     resizeMode: 'contain', // Maintain aspect ratio of the image
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 20, // Position it near the bottom
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 14,
+    color: '#fff',
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    marginBottom: 4,
+  },
+  footerNames: {
+    fontSize: 14,
+    color: '#fff',
+    
   },
 });
 
