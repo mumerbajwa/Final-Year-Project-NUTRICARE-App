@@ -8,7 +8,10 @@ import {
   Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+<<<<<<< HEAD
 import axios from 'axios';
+=======
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
 
 const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -17,6 +20,11 @@ const SignUpScreen = ({ navigation }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
   const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
+<<<<<<< HEAD
+=======
+
+  // Password condition states
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
   const [passwordErrors, setPasswordErrors] = useState([]);
 
   const validateEmail = (value) => {
@@ -36,6 +44,7 @@ const SignUpScreen = ({ navigation }) => {
     setPasswordErrors(errors);
   };
 
+<<<<<<< HEAD
   const handleSignUp = async () => {
     // Validate input fields
     if (!email || !password || !confirmPassword) {
@@ -85,12 +94,47 @@ const SignUpScreen = ({ navigation }) => {
     }
   };
   
+=======
+  const handleSignUp = () => {
+    // Check if any field is empty
+    if (!email || !password || !confirmPassword) {
+      Alert.alert('Error', 'Please fill all the fields.');
+      return;
+    }
+
+    // Check if email is valid
+    if (emailError) {
+      Alert.alert('Error', 'Please enter a valid email address.');
+      return;
+    }
+
+    // Check if password meets all conditions
+    if (passwordErrors.length > 0) {
+      Alert.alert('Error', 'Please ensure your password meets all conditions.');
+      return;
+    }
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match.');
+      return;
+    }
+
+    // If all validations pass, proceed to navigate
+    console.log('Sign Up Successful', email);
+    navigation.navigate('Otpverification'); // Example navigation
+  };
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
 
   return (
     <View style={styles.container}>
       <Text style={styles.welcomeText}>Welcome!</Text>
       <Text style={styles.signupText}>Sign Up</Text>
 
+<<<<<<< HEAD
+=======
+      {/* Email Input */}
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -102,6 +146,10 @@ const SignUpScreen = ({ navigation }) => {
       />
       {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
 
+<<<<<<< HEAD
+=======
+      {/* Password Input */}
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
       <View style={styles.passwordContainer}>
         <TextInput
           style={styles.passwordInput}
@@ -125,6 +173,10 @@ const SignUpScreen = ({ navigation }) => {
         <Text style={styles.errorText}>- {passwordErrors[0]}</Text>
       )}
 
+<<<<<<< HEAD
+=======
+      {/* Confirm Password Input */}
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
       <View style={styles.passwordContainer}>
         <TextInput
           style={styles.passwordInput}
@@ -145,6 +197,15 @@ const SignUpScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
+<<<<<<< HEAD
+=======
+      {/* Error under Confirm Password */}
+      {passwordErrors.includes('Passwords do not match') && (
+        <Text style={styles.errorText}>Passwords do not match</Text>
+      )}
+
+      {/* Sign Up Button */}
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
       <TouchableOpacity style={styles.signupButton} onPress={handleSignUp}>
         <Text style={styles.signupButtonText}>Sign Up</Text>
       </TouchableOpacity>

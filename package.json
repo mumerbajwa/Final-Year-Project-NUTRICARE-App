@@ -1,11 +1,16 @@
 {
+<<<<<<< HEAD
   "name": "temp5",
+=======
+  "name": "nutricare",
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
+<<<<<<< HEAD
     "web": "expo start --web",
     "clear": "expo start -c"
   },
@@ -46,6 +51,25 @@
     "@babel/core": "^7.20.0",
     "@babel/preset-env": "^7.20.0",
     "@react-native-community/cli": "^18.0.0"
+=======
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@react-navigation/native": "^7.0.6",
+    "@react-navigation/stack": "^7.0.11",
+    "expo": "~52.0.11",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.3",
+    "react-native-gesture-handler": "^2.21.2",
+    "react-native-reanimated": "^3.16.2",
+    "react-native-safe-area-context": "^4.14.0",
+    "react-native-screens": "^4.3.0",
+    "react-native-vector-icons": "^10.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
   },
   "private": true
 }

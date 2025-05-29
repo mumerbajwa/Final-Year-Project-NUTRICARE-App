@@ -30,6 +30,7 @@ const UserOptions = ({ navigation }) => {
 
   const handleNavigate = (role) => {
     if (!error && username) {
+<<<<<<< HEAD
       console.log('Navigating to', role, 'with username:', username);
       switch(role) {
         case 'NutritionistPage':
@@ -47,6 +48,9 @@ const UserOptions = ({ navigation }) => {
         default:
           Alert.alert('Error', 'Invalid user type selected');
       }
+=======
+      navigation.navigate(role, { username }); // Pass 'username' to the next screen
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
     } else {
       Alert.alert('Error', 'Please enter a valid username.');
     }
@@ -76,13 +80,21 @@ const UserOptions = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
+<<<<<<< HEAD
         onPress={() => handleNavigate('UserPage', 'healthworker')}
+=======
+        onPress={() => handleNavigate('HealthWorkerPage')}
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
       >
         <Text style={styles.buttonText}>I'm a Health Worker</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
+<<<<<<< HEAD
         onPress={() => handleNavigate('UserPage', 'patient')}
+=======
+        onPress={() => handleNavigate('UserPage')}
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
       >
         <Text style={styles.buttonText}>I'm a User / Patient</Text>
       </TouchableOpacity>

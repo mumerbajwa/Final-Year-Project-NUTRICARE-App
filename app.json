@@ -1,7 +1,12 @@
 {
   "expo": {
+<<<<<<< HEAD
     "name": "temp5",
     "slug": "temp5",
+=======
+    "name": "nutricare",
+    "slug": "nutricare",
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

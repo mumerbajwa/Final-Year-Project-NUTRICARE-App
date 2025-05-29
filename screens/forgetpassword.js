@@ -31,7 +31,11 @@ const ForgetPassword = ({ navigation }) => {
       return;
     }
 
+<<<<<<< HEAD
     navigation.navigate("OtpVerificationLogin");
+=======
+    navigation.navigate("homeeeee");
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
   };
 
   return (

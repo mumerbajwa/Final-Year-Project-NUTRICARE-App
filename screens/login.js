@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import {
   View,
@@ -82,6 +83,30 @@ const LoginScreen = ({ navigation }) => {
       setIsLoading(false);
       Alert.alert("Error", "Something went wrong. Please try again later.");
       console.error("Login error:", error);
+=======
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons'; // Install with `npm install react-native-vector-icons`
+
+const LoginScreen = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [hidePassword, setHidePassword] = useState(true);
+
+  const validateEmail = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert('Invalid Email', 'Please enter a valid email address.');
+      return false;
+    }
+    return true;
+  };
+
+  const handleLogin = () => {
+    if (validateEmail()) {
+      Alert.alert('Login Success', `Welcome, ${email}`);
+      // Perform login logic
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
     }
   };
 
@@ -90,7 +115,10 @@ const LoginScreen = ({ navigation }) => {
       <Text style={styles.welcomeText}>Welcome back!</Text>
       <Text style={styles.loginText}>Login</Text>
 
+<<<<<<< HEAD
       {/* Email Input */}
+=======
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -101,7 +129,11 @@ const LoginScreen = ({ navigation }) => {
         autoCorrect={false}
       />
 
+<<<<<<< HEAD
       {/* Password Input */}
+=======
+      {/* Password Input Section */}
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
       <View style={styles.passwordContainer}>
         <TextInput
           style={styles.passwordInput}
@@ -115,7 +147,11 @@ const LoginScreen = ({ navigation }) => {
           onPress={() => setHidePassword(!hidePassword)}
         >
           <Icon
+<<<<<<< HEAD
             name={hidePassword ? "eye-off-outline" : "eye-outline"}
+=======
+            name={hidePassword ? 'eye-off-outline' : 'eye-outline'}
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
             size={20}
             color="#333"
           />
@@ -124,11 +160,16 @@ const LoginScreen = ({ navigation }) => {
 
       {/* Forget Password Button */}
       <View style={styles.forgetPasswordContainer}>
+<<<<<<< HEAD
         <TouchableOpacity onPress={() => navigation.navigate("ForgetPassword")}>
+=======
+        <TouchableOpacity onPress={() => navigation.navigate('ForgetPassword')}>
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
           <Text style={styles.forgetPasswordText}>Forget Password?</Text>
         </TouchableOpacity>
       </View>
 
+<<<<<<< HEAD
       {/* Login Button */}
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         {isLoading ? (
@@ -142,6 +183,15 @@ const LoginScreen = ({ navigation }) => {
       <View style={styles.footer}>
         <Text style={styles.noAccountText}>Don't have an account?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+=======
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+        <Text style={styles.loginButtonText}>Login</Text>
+      </TouchableOpacity>
+
+      <View style={styles.footer}>
+        <Text style={styles.noAccountText}>Don't have an account?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
           <Text style={styles.createAccountText}>SignUp</Text>
         </TouchableOpacity>
       </View>
@@ -154,6 +204,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+<<<<<<< HEAD
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
@@ -164,10 +215,23 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
+=======
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#F5F5F5',
+  },
+  welcomeText: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
   },
   loginText: {
     fontSize: 22,
     marginBottom: 20,
+<<<<<<< HEAD
     textAlign: "center",
     color: "#333",
   },
@@ -188,6 +252,28 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     borderRadius: 16,
     backgroundColor: "#fff",
+=======
+    textAlign: 'center',
+    color: '#333',
+  },
+  input: {
+    width: '100%',
+    padding: 15,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 16,
+    marginBottom: 10,
+    backgroundColor: '#fff',
+  },
+  passwordContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 16,
+    backgroundColor: '#fff',
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
     marginBottom: 8,
   },
   passwordInput: {
@@ -198,11 +284,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   forgetPasswordContainer: {
+<<<<<<< HEAD
     alignSelf: "flex-end",
+=======
+    alignSelf: 'flex-end',
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
     marginRight: 10,
     marginBottom: 10,
   },
   forgetPasswordText: {
+<<<<<<< HEAD
     color: "#29AB87",
     fontSize: 14,
     textDecorationLine: "underline",
@@ -227,12 +318,44 @@ const styles = StyleSheet.create({
   },
   noAccountText: {
     color: "#555",
+=======
+    color: '#29AB87',
+    fontSize: 14,
+    textDecorationLine: 'underline',
+  },
+  loginButton: {
+    backgroundColor: '#29AB87',
+    paddingVertical: 12,
+    width: '80%',
+    borderRadius: 20,
+    alignItems: 'center',
+    marginTop: 18,
+  },
+  loginButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  footer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  noAccountText: {
+    color: '#555',
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
     fontSize: 16,
     marginRight: 10,
   },
   createAccountText: {
+<<<<<<< HEAD
     color: "#29AB87",
     fontSize: 16,
     textDecorationLine: "underline",
+=======
+    color: '#29AB87',
+    fontSize: 16,
+    textDecorationLine: 'underline',
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
   },
 });

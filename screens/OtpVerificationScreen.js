@@ -5,7 +5,10 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+<<<<<<< HEAD
   Alert
+=======
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
 } from 'react-native';
 
 const OtpVerificationScreen = ({ navigation }) => {
@@ -29,7 +32,11 @@ const OtpVerificationScreen = ({ navigation }) => {
     const otpValue = otp.join('');
     if (otpValue.length === 4) {
       console.log('OTP entered:', otpValue);
+<<<<<<< HEAD
       Alert.alert("Success", "Account created successfully!");
+=======
+      
+>>>>>>> ce0e048b4abc2314a5c6d0175b5c742b001797f2
       // Navigate to the next screen
       navigation.navigate('UserOptions'); // Replace 'UserOptions' with your target screen name
     } else {
