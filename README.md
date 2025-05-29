@@ -40,8 +40,8 @@ Provides instant identification of malnutrition risks to enable timely intervent
 ## 🛠️ Tech Stack  
 - **Languages:** JavaScript, Python  
 - **Frameworks:** React-native, node.js, tenserflow, Pytorch, RestAPIs  
-- **Backend:** Node.js, FireBase   
-- **Database:** FireBase  
+- **Backend:** Node.js, MongoDB   
+- **Database:** MongoDB  
 - **APIs:** AI-based image analysis and healthcare APIs.  
 
 ---
