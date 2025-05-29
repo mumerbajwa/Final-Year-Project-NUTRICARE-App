@@ -1,0 +1,240 @@
+import React, { useEffect, useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  Image,
+  ScrollView,
+  Alert,
+} from 'react-native';
+
+const UserPage = ({ route, navigation }) => {
+  const { username } = route.params || {}; // Safe access to route.params
+  const [currentDate, setCurrentDate] = useState('');
+
+  useEffect(() => {
+    console.log('UserPage mounted with username:', username);
+    const today = new Date();
+    const monthName = today.toLocaleString('default', { month: 'long' });
+    const day = today.getDate();
+    setCurrentDate(`${monthName}, ${day}`);
+  }, [username]);
+
+  if (!username) {
+    console.error('Username is missing in UserPage');
+    return (
+      <View style={styles.container}>
+        <Text style={styles.errorText}>Username is missing</Text>
+      </View>
+    );
+  }
+
+  return (
+    <ScrollView style={styles.container}>
+      {/* Header Section */}
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.greetingText}>Hi, {username}</Text>
+          <Text style={styles.dateText}>{currentDate}</Text>
+        </View>
+        <TouchableOpacity
+          style={styles.profileButton}
+          onPress={() => navigation.navigate('ProfilePage')}
+        >
+          <Image
+            source={require('../assets/profile.jpeg')}
+            style={styles.profileImage}
+          />
+        </TouchableOpacity>
+      </View>
+
+      {/* Search Bar */}
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search"
+          placeholderTextColor="#999"
+        />
+        <TouchableOpacity style={styles.searchButton}>
+          <Text style={styles.searchButtonText}>🔍</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Buttons Section */}
+      <View style={styles.buttonGrid}>
+        <TouchableOpacity
+          style={styles.optionButton}
+          onPress={() => navigation.navigate('EnterPatientData')}
+        >
+          <Image source={require('../assets/data_input.png')} style={styles.optionIcon} />
+          <Text style={styles.optionText}>Enter the Data</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.optionButton}
+          onPress={() => navigation.navigate('ViewDataPage')}
+        >
+          <Image source={require('../assets/view_data.png')} style={styles.optionIcon} />
+          <Text style={styles.optionText}>View your Data</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.optionButton}
+          onPress={() => navigation.navigate('FindNutritionist')}
+        >
+          <Image source={require('../assets/doctor_icon.png')} style={styles.optionIcon} />
+          <Text style={styles.optionText}>Find the Nutritionist</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.optionButton}
+          onPress={() => navigation.navigate('AiadvisorPage')}
+        >
+          <Image source={require('../assets/chatbot_icon.png')} style={styles.optionIcon} />
+          <Text style={styles.optionText}>AI Adviser</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.optionButton}
+          onPress={() => navigation.navigate('CheckReportPage')}
+        >
+          <Image source={require('../assets/data_report.png')} style={styles.optionIcon} />
+          <Text style={styles.optionText}>Check your Report</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.optionButton}
+          onPress={() => {
+            try {
+              if (!navigation) {
+                console.error('Navigation object is not available');
+                Alert.alert('Error', 'Navigation is not available');
+                return;
+              }
+              if (!username) {
+                console.error('Username is not available');
+                Alert.alert('Error', 'Username is required for video consultation');
+                return;
+              }
+
+              navigation.navigate('NutritionistList', { username });
+            } catch (error) {
+              console.error('Navigation error:', error);
+              Alert.alert('Error', 'Failed to load nutritionist list');
+            }
+          }}
+        >
+          <Image source={require('../assets/video-call.png')} style={styles.optionIcon} />
+          <Text style={styles.optionText}>Video consultations</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
+  );
+};
+
+export default UserPage;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    padding: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  greetingText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    marginTop: 15,
+  },
+  dateText: {
+    fontSize: 16,
+    color: '#555',
+    marginTop: 5,
+  },
+  profileButton: {
+    marginTop: 15,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 16,
+    color: '#333',
+  },
+  searchButton: {
+    backgroundColor: '#29AB87',
+    padding: 10,
+    borderRadius: 12,
+    marginLeft: 10,
+  },
+  searchButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  buttonGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  optionButton: {
+    width: '47%',
+    aspectRatio: 1,
+    backgroundColor: '#fff',
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 6,
+  },
+  optionIcon: {
+    width: 40,
+    height: 40,
+    marginBottom: 10,
+    resizeMode: 'contain',
+  },
+  optionText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'center',
+  },
+  errorText: {
+    fontSize: 18,
+    color: 'red',
+    textAlign: 'center',
+    marginTop: 50,
+  },
+});
